@@ -15,6 +15,7 @@ import jwt from "jsonwebtoken";
 import { secret } from "./config";
 import User from "./models/user";
 import helmet from "helmet";
+import sanitize from "express-mongo-sanitize";
 
 const app = express();
 const httpServer = createServer(app);
@@ -28,6 +29,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
+app.use(sanitize());
 
 mongoose.set("toJSON", {
   virtuals: true,
