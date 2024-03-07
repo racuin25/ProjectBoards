@@ -14,6 +14,7 @@ import { SocketEventsEnum } from "./types/socketEvents.enum";
 import jwt from "jsonwebtoken";
 import { secret } from "./config";
 import User from "./models/user";
+import helmet from "helmet";
 
 const app = express();
 const httpServer = createServer(app);
@@ -26,6 +27,7 @@ const io = new Server(httpServer, {
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(helmet());
 
 mongoose.set("toJSON", {
   virtuals: true,
